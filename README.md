@@ -32,10 +32,36 @@ Normalizing the data
 Splitting the data into test and train
 
 ## PROGRAM:
-/Write your code here/
+import pandas as pd
+df=pd.read_csv("/content/Churn_Modelling.csv")
+df.head()
+df.isnull().sum()
+df.drop(["RowNumber","Age","Gender","Geography","Surname"],inplace=True,axis=1)
+print(df)
+x=df.iloc[:,:-1].values
+y=df.iloc[:,-1].values
+print(x)
+print(y)
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+df1 = pd.DataFrame(scaler.fit_transform(df))
+print(df1)
+from sklearn.model_selection import train_test_split
+xtrain,ytrain,xtest,ytest=train_test_split(x,y,test_size=0.2,random_state=2)
+print(xtrain)
+print(len(xtrain))
+print(xtest)
+print(len(xtest))
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+df1 = sc.fit_transform(df)
+print(df1)
 
 ## OUTPUT:
-/ Show the result/
+![Screenshot 2023-11-15 191204](https://github.com/Lavanyajoyce/Ex.No.1---Data-Preprocessing/assets/119103855/a443195c-5843-4480-b5dc-48383aa20769)
+![Screenshot 2023-11-15 191219](https://github.com/Lavanyajoyce/Ex.No.1---Data-Preprocessing/assets/119103855/802e9a91-a22f-4cad-8db5-49edf80f5410)
+![Screenshot 2023-11-15 191233](https://github.com/Lavanyajoyce/Ex.No.1---Data-Preprocessing/assets/119103855/a32a7074-a7ab-420e-b7d7-d498054180a3)
+
 
 ## RESULT
-/Type your result here/
+Thus the above program for standardizing the given data was implemented successfully.
